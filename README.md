@@ -14,7 +14,7 @@ Jetpack 4.4.1 환경:
 : git clone https://github.com/AlexeyAB/darknet.git
 
 darknet 폴더의 Makefile 수정
-
+<dev>
 GPU=0
 CUDNN=0
 CUDNN_HALF=0
@@ -22,7 +22,7 @@ OPENCV=0
 AVX=0
 OPENMP=0
 LIBSO=0
-같이위의 내용을 아래와 같이 수정
+위의 내용을 아래와 같이 수정
 
 GPU=1
 CUDNN=1
@@ -31,7 +31,7 @@ OPENCV=1
 AVX=0
 OPENMP=0
 LIBSO=1
-
+<dev>
 : make
 
 ## 실행방법
