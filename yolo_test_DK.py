@@ -16,12 +16,9 @@ prevTime = 0
 fpss = []
 while(cap.isOpened()):
         ret, frame = cap.read() # read capture video frame
-
-	
-
 	if ret: # ture: read frame successed, false: read frame failed
 		
-		# get FPS
+		#### get FPS ####
 		curTime = time.time()
 		sec = curTime - prevTime
 		prevTime = curTime
@@ -30,6 +27,7 @@ while(cap.isOpened()):
 		avr_fps = sum(fpss)/len(fpss)
 		str = "FPS : %0.1f" % avr_fps
 
+		#### Image Preprocessing, Detect, Draw Box ####
 		frame_resized = cv2.resize(frame, (width, height), interpolation=cv2.INTER_LINEAR) # resize image
 		frame_rgb = cv2.cvtColor(frame_resized, cv2.COLOR_BGR2RGB) # change bgr image 2 rgb image
 		darknet.copy_image_from_bytes(darknet_image, frame_rgb.tobytes())
@@ -41,7 +39,7 @@ while(cap.isOpened()):
 		cv2.imshow('show',image)
 		for found in r: # for all detected obj
 			label_name, prob, loc = found[0], found[1], found[2] # get label name, probablility, location
-			print label_name
+			print(label_name)
 		if cv2.waitKey(1) != -1:
 			break
 	else:
